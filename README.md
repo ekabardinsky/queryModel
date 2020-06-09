@@ -39,5 +39,5 @@
  * UpdateTotalProgressBar - Метод обновления UI
  
  ## Попробовать
- Окройте в браузере ссылку: 
+ Окройте в браузере ссылку: https://ekabardinsky.github.io/queryModel/
  Протестировано в бразуере Google Chrome
