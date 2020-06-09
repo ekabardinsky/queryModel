@@ -1,0 +1,39 @@
+.panel {
+    background: aliceblue;
+    border: black 1px solid;
+    width: 20vw;
+}
+
+.row {
+    height: 50px;
+}
+
+.cell {
+    width: 10vw;
+}
+
+.label {
+    font-size: 1vw;
+    width: 10vw;
+}
+
+.textBox {
+    font-size: 1vw;
+    width: 10vw;
+}
+
+.dropDownList {
+    width: 10vw;
+}
+
+.button {
+    width: 6vw;
+}
+
+.emptyCell {
+    width: 20vw;
+}
+
+.progressBar {
+    width: 20vw;
+}

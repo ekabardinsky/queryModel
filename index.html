@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query model</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="main.js"></script>
+    <script src="model/ExponentialDistribution.js"></script>
+    <script src="model/PoissonDistribution.js"></script>
+    <script src="model/NormalDistribution.js"></script>
+    <script src="model/Model.js"></script>
+</head>
+<body>
+<table>
+    <tr>
+        <td>
+            <h3>Общее</h3>
+            <div class="panel">
+                <table>
+                    <tr class="row">
+                        <td class="cell">
+                            <span class="label">Каналов:</span>
+                        </td>
+                        <td class="cell">
+                            <input type="number" id="nTB" value="2" class="textBox"/>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="cell">
+                            <span class="label">Длина очереди:</span>
+                        </td>
+                        <td class="cell">
+                            <input type="number" id="mTB" value="4" class="textBox"/>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="cell">
+                            <span class="label">Время работы:</span>
+                        </td>
+                        <td class="cell">
+                            <input type="number" id="timeTB" value="20" class="textBox"/>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="cell">
+                            <span class="label">Шаг по времени:</span>
+                        </td>
+                        <td class="cell">
+                            <input type="number" id="dtTB" value="0.001" class="textBox"/>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="cell">
+                            <span class="label">Закон распределения:</span>
+                        </td>
+                        <td class="cell">
+                            <select id="distLawLB" onchange="distLawLB_SelectionChanged(this)" class="dropDownList">
+                                <option value="Нормальное распределение">Нормальное распределение</option>
+                                <option value="Распределение Пуассона">Распределение Пуассона</option>
+                                <option value="Экспоненциальное распределение">Экспоненциальное распределение</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="row NormalDistributionSP">
+                        <td class="cell">
+                            <span class="label">mu:</span>
+                        </td>
+                        <td class="cell">
+                            <input type="number" id="muDistTB" value="0.5" class="textBox"/>
+                        </td>
+                    </tr>
+                    <tr class="row NormalDistributionSP">
+                        <td class="cell">
+                            <span class="label">sigma:</span>
+                        </td>
+                        <td class="cell">
+                            <input type="number" id="sigmaDistTB" value="0.2" class="textBox"/>
+                        </td>
+                    </tr>
+                    <tr class="row PoissonDistributionSP" style="display: none">
+                        <td class="cell">
+                            <span class="label">lambda:</span>
+                        </td>
+                        <td class="cell">
+                            <input type="number" id="lambdaDistTB" value="1" class="textBox"/>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="cell">
+                            <span class="label">Задержка (мс):</span>
+                        </td>
+                        <td class="cell">
+                            <input type="number" id="delayTB" value="10" class="textBox"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <h3>Заявки</h3>
+            <div class="panel">
+                <table>
+                    <tr class="row">
+                        <td class="cell">
+                            <span class="label">Интенсивность:</span>
+                        </td>
+                        <td class="cell">
+                            <input type="number" id="lambdaTB" value="0.8" class="textBox"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <h3>Обслуживание</h3>
+            <div class="panel">
+                <table>
+                    <tr class="row">
+                        <td class="cell">
+                            <span class="label">Интенсивность:</span>
+                        </td>
+                        <td class="cell">
+                            <input type="number" id="muTB" value="2" class="textBox"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <h3>Управление моделированием процесса</h3>
+            <div class="panel">
+                <table>
+                    <tr class="row">
+                        <td class="cell">
+                            <input type="button" class="button" value="Запустить" onclick="start()"/>
+                        </td>
+                        <td class="cell resumeButton" style="display: none">
+                            <input type="button" class="button" value="Возобновить" onclick="resume()"/>
+                        </td>
+                        <td class="cell pauseButton">
+                            <input type="button" class="button" value="Приостановить" onclick="pause()"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td class="emptyCell">
+        </td>
+        <td>
+            <span class="label">Прогресс работы СМО</span>
+            <br>
+            <progress value="1" max="100" class="progressBar" id="totalProgress"></progress>
+            <br>
+            <span class="label">Состояние каналов</span>
+            <div id="barsStates"></div>
+            <br>
+            <span class="label">Детали</span>
+            <div id="details"></div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
